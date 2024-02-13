@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import WebView from "react-native-webview";
+import htmlString from "./lexical-editor/dist/htmlString";
 
 export default function App() {
   return (
@@ -8,7 +9,7 @@ export default function App() {
         <Text>Lexical Webview</Text>
         <WebView
           originWhitelist={["*"]}
-          source={{ uri: "https://playground.lexical.dev" }}
+          source={{ html: htmlString }}
           style={{ marginTop: 20 }}
         />
       </View>
