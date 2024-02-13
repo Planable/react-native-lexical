@@ -1,0 +1,28 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.editor-container {
+  position: relative;
+}
+
+.editor-input {
+  resize: none;
+  font-size: 15px;
+  position: relative;
+  outline: 0;
+  padding: 5px;
+  color: #232426;
+  caret-color: #444;
+}
+
+.editor-placeholder {
+  color: #999;
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  top: 0;
+  padding: 5px;
+  pointer-events: none;
+}

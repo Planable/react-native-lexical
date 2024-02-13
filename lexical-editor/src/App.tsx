@@ -1,7 +1,9 @@
+import { Editor } from "./Editor";
+
 function App() {
   return (
     <>
-      <h1>Hello from Webview</h1>
+      <Editor />
     </>
   );
 }
