@@ -1,11 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
+import WebView from "react-native-webview";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View style={{ width: "100%", height: "80%" }}>
+        <Text>Lexical Webview</Text>
+        <WebView
+          originWhitelist={["*"]}
+          source={{ uri: "https://playground.lexical.dev" }}
+          style={{ marginTop: 20 }}
+        />
+      </View>
     </View>
   );
 }
@@ -13,8 +19,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#e0e0e0",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
