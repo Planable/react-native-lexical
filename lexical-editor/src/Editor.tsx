@@ -1,7 +1,9 @@
+import { $getRoot, EditorState } from "lexical";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import "./Editor.css";
 
@@ -15,6 +17,22 @@ export function Editor() {
     onError,
   };
 
+  function onChange(editorState: EditorState) {
+    editorState.read(() => {
+      const plainText = $getRoot().getTextContent();
+
+      const message = {
+        type: "LEXICAL_EDITOR_STATE_CHANGE",
+        payload: {
+          plainText,
+          serializedEditorState: editorState.toJSON(),
+        },
+      };
+
+      window.ReactNativeWebView?.postMessage(JSON.stringify(message));
+    });
+  }
+
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <div className="editor-container">
@@ -26,6 +44,7 @@ export function Editor() {
           ErrorBoundary={LexicalErrorBoundary}
         />
         <HistoryPlugin />
+        <OnChangePlugin onChange={onChange} />
       </div>
     </LexicalComposer>
   );
