@@ -1,10 +1,11 @@
-import { $getRoot, EditorState } from "lexical";
+import { $getRoot, EditorState, LexicalEditor } from "lexical";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import { EditorStateInitPlugin } from "./plugins/EditorStateInitPlugin";
 import "./Editor.css";
 
 function onError(error: unknown) {
@@ -17,7 +18,14 @@ export function Editor() {
     onError,
   };
 
-  function onChange(editorState: EditorState) {
+  function onChange(
+    editorState: EditorState,
+    _latestEditor: LexicalEditor,
+    tags: Set<string>,
+  ) {
+    if (tags.has("FromReactNativeToLexical")) {
+      return;
+    }
     editorState.read(() => {
       const plainText = $getRoot().getTextContent();
 
@@ -44,6 +52,7 @@ export function Editor() {
           ErrorBoundary={LexicalErrorBoundary}
         />
         <HistoryPlugin />
+        <EditorStateInitPlugin />
         <OnChangePlugin onChange={onChange} />
       </div>
     </LexicalComposer>
