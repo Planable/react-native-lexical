@@ -1,8 +1,8 @@
 # react-native-lexical
 
-This is a playground project that uses Lexical editor in React Native throught react-native-weview.
+This playground project uses Lexical editor in React Native through react-native-weview.
 
-![](lexical-initial-state.gif)
+<image src="https://github.com/Planable/react-native-lexical/assets/16056918/79a655e3-b274-40ff-bc7b-cea53cb2d006" height="500" />
 
 ## Development
 
