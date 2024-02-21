@@ -1,16 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
 import WebView, { WebViewMessageEvent } from "react-native-webview";
 import htmlString from "./lexical-editor/dist/htmlString";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function App() {
   const webviewRef = useRef<WebView>(null);
+
+  const [webViewHeight, setWebViewHeight] = useState(1); // Height 0 causes the app to crash on Android
 
   function onMessage(event: WebViewMessageEvent) {
     const message = JSON.parse(event.nativeEvent.data);
     console.log(JSON.stringify(message, null, 2));
 
     switch (message.type) {
+      case "BODY_HEIGHT_CHANGE":
+        setWebViewHeight(message.payload);
+        break;
       case "LEXICAL_EDITOR_STATE_CHANGE":
         // Do something with the editor state
         // like saving it to a database
@@ -63,9 +68,23 @@ export default function App() {
         <WebView
           ref={webviewRef}
           originWhitelist={["*"]}
+          injectedJavaScript={`
+              const observer = new ResizeObserver(entries => {
+                const height = entries[0].target.clientHeight;
+                const message = {
+                  type: 'BODY_HEIGHT_CHANGE',
+                  payload: height
+                };
+                window.ReactNativeWebView?.postMessage(JSON.stringify(message));
+              });
+              observer.observe(document.body);
+        `}
           onMessage={onMessage}
           source={{ html: htmlString }}
-          style={{ marginTop: 20 }}
+          style={{
+            marginTop: 20,
+            maxHeight: webViewHeight,
+          }}
         />
       </View>
     </View>
