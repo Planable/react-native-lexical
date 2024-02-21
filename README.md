@@ -10,3 +10,8 @@ This playground project uses Lexical editor in React Native through react-native
 npm i
 npm run ios
 ```
+
+## Contribution
+
+This approach is pretty experimental so any contributions (keyboard toolbar, plugins, commands) are welcome.
+Also if you have any ideas, questions or problems with Lexical in a react-native-weview, you can open an issue in this repo and we can discuss it.
