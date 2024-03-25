@@ -19,6 +19,7 @@ export default function App() {
       case "LEXICAL_EDITOR_STATE_CHANGE":
         // Do something with the editor state
         // like saving it to a database
+        console.log(JSON.stringify(message));
         break;
       case "LEXICAL_EDITOR_READY":
         const commandMessage = {
@@ -70,7 +71,7 @@ export default function App() {
           originWhitelist={["*"]}
           injectedJavaScript={`
               const observer = new ResizeObserver(entries => {
-                const height = entries[0].target.clientHeight;
+                const height = entries[0].target.clientHeight + 24;
                 const message = {
                   type: 'BODY_HEIGHT_CHANGE',
                   payload: height
