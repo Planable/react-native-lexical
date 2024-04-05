@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@lexical/react": "^0.14.2",
+    "@webview-bridge/react": "^1.4.0",
+    "@webview-bridge/web": "^1.4.0",
     "lexical": "^0.14.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
