@@ -11,16 +11,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@lexical/react": "^0.13.1",
-    "lexical": "^0.13.1",
+    "@lexical/react": "^0.14.2",
+    "@webview-bridge/react": "^1.4.0",
+    "@webview-bridge/web": "^1.4.0",
+    "lexical": "^0.14.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
